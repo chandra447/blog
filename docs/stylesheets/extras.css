@@ -1,0 +1,164 @@
+@font-face {
+    font-family: "Space Grotesk";
+    src: url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap");
+}
+
+/* Enhanced beige color scheme for light mode */
+[data-md-color-scheme="default"] {
+    /* Main background colors */
+    --md-default-bg-color: #f5f5dc; /* Base beige */
+    --md-default-bg-color--light: #f0ead6; /* Slightly darker beige for contrast */
+    --md-default-bg-color--lighter: #f8f6e9; /* Lighter beige for hover states */
+    --md-default-bg-color--lightest: #faf8f1; /* Lightest beige for subtle highlights */
+    
+    /* Card and surface colors */
+    --md-code-bg-color: #e8e4d0; /* Slightly darker beige for code blocks */
+    --md-footer-bg-color: #e0d8b8; /* Darker beige for footer */
+    --md-footer-bg-color--dark: #d5cba6; /* Even darker beige for footer elements */
+    
+    /* Navigation and sidebar */
+    --md-typeset-a-color: #8b6e42; /* Warm brown for links */
+    --md-accent-fg-color: #b38b59; /* Warm accent color */
+    
+    /* Table colors */
+    --md-typeset-table-color: #e6e0cc; /* Slightly darker beige for tables */
+}
+
+/* Animation-friendly styling */
+
+/* Main heading with subtle text shadow for depth */
+h1 {
+    margin-top: 2rem;
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    transition: all 1s ease;
+}
+
+/* Section headings - general styling */
+h2 {
+    margin-top: 2.5rem;
+    position: relative;
+}
+
+/* Hero page section headings with bottom border */
+.heropage  {
+    border-bottom: 2px solid var(--md-accent-fg-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+    margin-top: 2.5rem;
+    position: relative;
+}
+
+/* Card styling for grid items */
+.grid.cards > li {
+    border-radius: 8px;
+    border: 1px solid rgba(139, 110, 66, 0.2);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.grid.cards > li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    background-color: var(--md-accent-fg-color);
+}
+
+/* Style for the social links section */
+.social-links {
+    margin-top: 2rem;
+}
+
+/* Grid layout for social links */
+.social-links.grid.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+/* Style for md-button in social links */
+.social-links a.md-button {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-weight: 500;
+    margin: 0.25rem;
+    width: 100%;
+    text-align: center;
+    border: 1px solid rgba(139, 110, 66, 0.3);
+    background-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    letter-spacing: 0.1rem;
+}
+
+/* Hover effect for social links */
+.social-links a.md-button:hover {
+    background-color: var(--md-accent-fg-color);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Icon styling in social links */
+.social-links a.md-button .twemoji,
+.social-links a.md-button .emojione {
+    margin-right: 0.75rem; /* Add space between icon and text */
+    display: inline-flex;
+    align-items: center;
+    vertical-align: -0.125em;
+}
+
+/* Ensure consistent icon size */
+.social-links a.md-button svg,
+.social-links a.md-button img {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: -0.125em;
+    position: relative;
+    top: -0.05em;
+}
+@keyframes gradientBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Enhance the appearance of code blocks */
+.highlight pre {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle animation for links */
+a {
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+a:hover {
+    text-decoration: none;
+    color: var(--md-accent-fg-color);
+}
+
+a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--md-accent-fg-color);
+    transition: width 0.3s ease;
+}
+
+a:hover:after {
+    width: 100%;
+}

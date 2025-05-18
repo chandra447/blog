@@ -1,0 +1,97 @@
+site_name: Blog
+site_description: Thoughts, ideas, and discoveries
+site_author: Chandra Doredla
+nav:
+  - Home:
+    - Home: 'index.md'
+    - Writing: 'writing/index.md'
+  - Writing:
+    - writing: "writing/index.md"
+theme:
+  name: material
+  favicon: images/materialdesign.png
+  icon:
+    logo: material/matrix
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+  font:
+    text: "Space Grotesk"
+    code: Roboto Mono
+  features:
+    - navigation.indexes
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - header.autohide
+    - toc.follow
+    - navigation.top
+    - search.share
+  palette:
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+      primary: brown
+      accent: indigo
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+      primary: brown
+      accent: indigo    
+
+
+markdown_extensions:
+  - attr_list
+  - admonition
+  - md_in_html
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - md_in_html
+  - footnotes
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+plugins:
+  - search
+  - tags
+  - blog:
+      blog_dir: writing
+      blog_toc: true
+      categories_name: Categories
+      post_date_format: yyyy/MM/dd
+      post_url_format: "{categories}/{slug}"
+      post_url_max_categories: 2
+      archive_date_format: yyyy
+      archive_url_format: "archive/{date}"
+      authors_file: .authors.yml
+
+
+extra_css:
+  - stylesheets/extras.css
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js
+  - https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js
+  - js/animations.js
