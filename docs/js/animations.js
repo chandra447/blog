@@ -1,28 +1,44 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Register ScrollTrigger plugin
-  gsap.registerPlugin(ScrollTrigger);
+  // Register ScrollTrigger and SplitText plugins
+  gsap.registerPlugin(ScrollTrigger, SplitText);
   
   // Initial delay before starting animations
   const initialDelay = 0.6;
   
-  // Ensure h1 is visible initially
+  // Ensure h1 is visible initially but set opacity to 0 for animation
   gsap.set('h1', {
-    opacity: 1,
-    y: 0
+    opacity: 0
   });
   
-  // Staggered entrance animation for the header and role cards
-  gsap.fromTo('h1', 
-    { opacity: 0, y: -50 }, // starting state
-    { 
-      opacity: 1, 
-      y: 0, 
-      duration: 0.8, 
-      delay: initialDelay, 
-      ease: 'back.out(1.7)',
-      clearProps: 'all' // This ensures all properties are cleared after animation
+  // Create the SplitText instance for the h1 heading
+  let splitHeading = new SplitText("h1", {
+    type: "words,chars"
+  });
+  
+  // Animate the individual characters with a staggered effect
+  gsap.from(splitHeading.chars, {
+    opacity: 0,
+    y: 100,
+    rotationX: -90,
+    stagger: {
+      amount: 0.5,
+      from: "random"
+    },
+    duration: 1,
+    delay: initialDelay,
+    ease: "back.out(1.7)",
+    onComplete: function() {
+      // Revert the split text after animation completes (optional)
+      // splitHeading.revert();
     }
-  );
+  });
+  
+  // Make sure the heading stays visible after animation
+  gsap.to('h1', {
+    opacity: 1,
+    delay: initialDelay,
+    duration: 0.1
+  });
   
   gsap.from('.grid.cards > li', {
     opacity: 0,
@@ -70,12 +86,15 @@ document.addEventListener('DOMContentLoaded', function() {
   gsap.from('.social-links .md-button', {
     scrollTrigger: {
       trigger: '.social-links',
-      start: 'top 90%',
+      start: 'top 95%',
       toggleActions: 'play none none none'
     },
     opacity: 0,
     y: 20,
-    stagger: 0.1, // Increased stagger time
+    stagger: {
+      amount: 0.5,
+      from: "end"
+    },
     duration: 0.8, // Longer duration
     delay: 0.5, // Added delay before starting
     ease: 'back.out(1.7)',

@@ -91,7 +91,8 @@ extra_css:
   - stylesheets/extras.css
 
 extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js
+  - https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js
+  - https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js
   - https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js
   - js/animations.js
