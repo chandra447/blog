@@ -1,6 +1,9 @@
 site_name: Blog
 site_description: Thoughts, ideas, and discoveries
 site_author: Chandra Doredla
+site_url: https://chandra447.github.io/blog/
+repo_url: https://github.com/chandra447/blog
+repo_name: chandra447/blog
 nav:
   - Home:
     - Home: 'index.md'
