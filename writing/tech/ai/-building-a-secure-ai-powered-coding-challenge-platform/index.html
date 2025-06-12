@@ -1,0 +1,1976 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="🚀 FastAPI + ⚡ React + 🔐 Clerk + 🤖 OpenAI = Secure coding challenge generator! Features JWT auth, webhook security, daily quotas, and intelligent question generation.">
+      
+      
+        <meta name="author" content="Chandra Doredla">
+      
+      
+        <link rel="canonical" href="https://chandra447.github.io/blog/writing/tech/ai/-building-a-secure-ai-powered-coding-challenge-platform/">
+      
+      
+      
+        <link rel="next" href="../-building-an-ai-powered-expense-tracker-with-modern-web-technologies/">
+      
+      
+      <link rel="icon" href="../../../../images/materialdesign.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>🔐🤖 Building a Secure AI-Powered Coding Challenge Platform - Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1%207.775V2.75C1%201.784%201.784%201%202.75%201h5.025c.464%200%20.91.184%201.238.513l6.25%206.25a1.75%201.75%200%200%201%200%202.474l-5.026%205.026a1.75%201.75%200%200%201-2.474%200l-6.25-6.25A1.75%201.75%200%200%201%201%207.775m1.5%200c0%20.066.026.13.073.177l6.25%206.25a.25.25%200%200%200%20.354%200l5.025-5.025a.25.25%200%200%200%200-.354l-6.25-6.25a.25.25%200%200%200-.177-.073H2.75a.25.25%200%200%200-.25.25ZM6%205a1%201%200%201%201%200%202%201%201%200%200%201%200-2%22/%3E%3C/svg%3E');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.5%201.75v11.5c0%20.138.112.25.25.25h3.17a.75.75%200%200%201%200%201.5H2.75A1.75%201.75%200%200%201%201%2013.25V1.75C1%20.784%201.784%200%202.75%200h8.5C12.216%200%2013%20.784%2013%201.75v7.736a.75.75%200%200%201-1.5%200V1.75a.25.25%200%200%200-.25-.25h-8.5a.25.25%200%200%200-.25.25m13.274%209.537zl-4.557%204.45a.75.75%200%200%201-1.055-.008l-1.943-1.95a.75.75%200%200%201%201.062-1.058l1.419%201.425%204.026-3.932a.75.75%200%201%201%201.048%201.074M4.75%204h4.5a.75.75%200%200%201%200%201.5h-4.5a.75.75%200%200%201%200-1.5M4%207.75A.75.75%200%200%201%204.75%207h2a.75.75%200%200%201%200%201.5h-2A.75.75%200%200%201%204%207.75%22/%3E%3C/svg%3E');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.5%207.75A.75.75%200%200%201%207.25%207h1a.75.75%200%200%201%20.75.75v2.75h.25a.75.75%200%200%201%200%201.5h-2a.75.75%200%200%201%200-1.5h.25v-2h-.25a.75.75%200%200%201-.75-.75M8%206a1%201%200%201%201%200-2%201%201%200%200%201%200%202%22/%3E%3C/svg%3E');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M3.499.75a.75.75%200%200%201%201.5%200v.996C5.9%202.903%206.793%203.65%207.662%204.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873%2010.794-.045%2012.622.26%2014.408.558%2016%201.94%2016%204.25c0%201.278-.954%202.575-2.44%202.734l.146.508.065.22c.203.701.412%201.455.476%202.226.142%201.707-.4%203.03-1.487%203.898C11.714%2014.671%2010.27%2015%208.75%2015h-6a.75.75%200%200%201%200-1.5h1.376a4.5%204.5%200%200%201-.563-1.191%203.84%203.84%200%200%201-.05-2.063%204.65%204.65%200%200%201-2.025-.293.75.75%200%200%201%20.525-1.406c1.357.507%202.376-.006%202.698-.318l.009-.01a.747.747%200%200%201%201.06%200%20.75.75%200%200%201-.012%201.074c-.912.92-.992%201.835-.768%202.586.221.74.745%201.337%201.196%201.621H8.75c1.343%200%202.398-.296%203.074-.836.635-.507%201.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4%202.4%200%200%201-.507-.441%203.1%203.1%200%200%201-.633-1.248.75.75%200%200%201%201.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738%200%201.25-.615%201.25-1.25%200-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706%201.345-.46.92-.27%201.774.019%203.062l.042.19.01.05c.348.443.666.949.94%201.553a.75.75%200%201%201-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7%205.527c-.814-.68-1.75-1.462-2.692-2.619a3.7%203.7%200%200%200-1.023.88c-.406.495-.663%201.036-.722%201.508.116.122.306.21.591.239.388.038.797-.06%201.032-.19a.75.75%200%200%201%20.728%201.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75%205.677V5.5c0-.984.48-1.94%201.077-2.664.46-.559%201.05-1.055%201.673-1.353z%22/%3E%3C/svg%3E');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M13.78%204.22a.75.75%200%200%201%200%201.06l-7.25%207.25a.75.75%200%200%201-1.06%200L2.22%209.28a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018L6%2010.94l6.72-6.72a.75.75%200%200%201%201.06%200%22/%3E%3C/svg%3E');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M0%208a8%208%200%201%201%2016%200A8%208%200%200%201%200%208m8-6.5a6.5%206.5%200%201%200%200%2013%206.5%206.5%200%200%200%200-13M6.92%206.085h.001a.749.749%200%201%201-1.342-.67c.169-.339.436-.701.849-.977C6.845%204.16%207.369%204%208%204a2.76%202.76%200%200%201%201.637.525c.503.377.863.965.863%201.725%200%20.448-.115.83-.329%201.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6%206%200%200%200-.26.16%201%201%200%200%200-.276.245.75.75%200%200%201-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1%201%200%200%200%20.277-.245C8.96%206.514%209%206.427%209%206.25a.61.61%200%200%200-.262-.525A1.27%201.27%200%200%200%208%205.5c-.369%200-.595.09-.74.187a1%201%200%200%200-.34.398M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M6.457%201.047c.659-1.234%202.427-1.234%203.086%200l6.082%2011.378A1.75%201.75%200%200%201%2014.082%2015H1.918a1.75%201.75%200%200%201-1.543-2.575Zm1.763.707a.25.25%200%200%200-.44%200L1.698%2013.132a.25.25%200%200%200%20.22.368h12.164a.25.25%200%200%200%20.22-.368Zm.53%203.996v2.5a.75.75%200%200%201-1.5%200v-2.5a.75.75%200%200%201%201.5%200M9%2011a1%201%200%201%201-2%200%201%201%200%200%201%202%200%22/%3E%3C/svg%3E');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M2.344%202.343za8%208%200%200%201%2011.314%2011.314A8.002%208.002%200%200%201%20.234%2010.089a8%208%200%200%201%202.11-7.746m1.06%2010.253a6.5%206.5%200%201%200%209.108-9.275%206.5%206.5%200%200%200-9.108%209.275M6.03%204.97%208%206.94l1.97-1.97a.749.749%200%200%201%201.275.326.75.75%200%200%201-.215.734L9.06%208l1.97%201.97a.749.749%200%200%201-.326%201.275.75.75%200%200%201-.734-.215L8%209.06l-1.97%201.97a.749.749%200%200%201-1.275-.326.75.75%200%200%201%20.215-.734L6.94%208%204.97%206.03a.75.75%200%200%201%20.018-1.042.75.75%200%200%201%201.042-.018%22/%3E%3C/svg%3E');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M9.504.43a1.516%201.516%200%200%201%202.437%201.713L10.415%205.5h2.123c1.57%200%202.346%201.909%201.22%203.004l-7.34%207.142a1.25%201.25%200%200%201-.871.354h-.302a1.25%201.25%200%200%201-1.157-1.723L5.633%2010.5H3.462c-1.57%200-2.346-1.909-1.22-3.004zm1.047%201.074L3.286%208.571A.25.25%200%200%200%203.462%209H6.75a.75.75%200%200%201%20.694%201.034l-1.713%204.188%206.982-6.793A.25.25%200%200%200%2012.538%207H9.25a.75.75%200%200%201-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005%200-.009.004%22/%3E%3C/svg%3E');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M4.72.22a.75.75%200%200%201%201.06%200l1%20.999a3.5%203.5%200%200%201%202.441%200l.999-1a.748.748%200%200%201%201.265.332.75.75%200%200%201-.205.729l-.775.776c.616.63.995%201.493.995%202.444v.327q0%20.15-.025.292c.408.14.764.392%201.029.722l1.968-.787a.75.75%200%200%201%20.556%201.392L13%207.258V9h2.25a.75.75%200%200%201%200%201.5H13v.5q-.002.615-.141%201.186l2.17.868a.75.75%200%200%201-.557%201.392l-2.184-.873A5%205%200%200%201%208%2016a5%205%200%200%201-4.288-2.427l-2.183.873a.75.75%200%200%201-.558-1.392l2.17-.868A5%205%200%200%201%203%2011v-.5H.75a.75.75%200%200%201%200-1.5H3V7.258L.971%206.446a.75.75%200%200%201%20.558-1.392l1.967.787c.265-.33.62-.583%201.03-.722a1.7%201.7%200%200%201-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72%201.28a.75.75%200%200%201%200-1.06m.53%206.28a.75.75%200%200%200-.75.75V11a3.5%203.5%200%201%200%207%200V7.25a.75.75%200%200%200-.75-.75ZM6.173%205h3.654A.17.17%200%200%200%2010%204.827V4.5a2%202%200%201%200-4%200v.327c0%20.096.077.173.173.173%22/%3E%3C/svg%3E');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M5%205.782V2.5h-.25a.75.75%200%200%201%200-1.5h6.5a.75.75%200%200%201%200%201.5H11v3.282l3.666%205.76C15.619%2013.04%2014.543%2015%2012.767%2015H3.233c-1.776%200-2.852-1.96-1.899-3.458Zm-2.4%206.565a.75.75%200%200%200%20.633%201.153h9.534a.75.75%200%200%200%20.633-1.153L12.225%2010.5h-8.45ZM9.5%202.5h-3V6c0%20.143-.04.283-.117.403L4.73%209h6.54L9.617%206.403A.75.75%200%200%201%209.5%206Z%22/%3E%3C/svg%3E');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2016%2016%22%3E%3Cpath%20d%3D%22M1.75%202.5h10.5a.75.75%200%200%201%200%201.5H1.75a.75.75%200%200%201%200-1.5m4%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5m0%205h8.5a.75.75%200%200%201%200%201.5h-8.5a.75.75%200%200%201%200-1.5M2.5%207.75v6a.75.75%200%200%201-1.5%200v-6a.75.75%200%200%201%201.5%200%22/%3E%3C/svg%3E');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Space+Grotesk:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Space Grotesk";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/extras.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-a-secure-ai-powered-coding-challenge-platform" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="Blog" class="md-header__button md-logo" aria-label="Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 2h4v2H4v16h2v2H2zm18 2h-2V2h4v20h-4v-2h2zM9 5h1v5h1v1H8v-1h1V6l-1 .5v-1zm6 8h1v5h1v1h-3v-1h1v-4l-1 .5v-1zm-6 0c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2m6-9c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🔐🤖 Building a Secure AI-Powered Coding Challenge Platform
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="brown" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="brown" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/chandra447/blog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    chandra447/blog
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../.." class="md-tabs__link">
+          
+  
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Writing
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="Blog" class="md-nav__button md-logo" aria-label="Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 2h4v2H4v16h2v2H2zm18 2h-2V2h4v20h-4v-2h2zM9 5h1v5h1v1H8v-1h1V6l-1 .5v-1zm6 8h1v5h1v1h-3v-1h1v-4l-1 .5v-1zm-6 0c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2m6-9c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2"/></svg>
+
+    </a>
+    Blog
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/chandra447/blog" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    chandra447/blog
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../.." class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_1" id="__nav_1_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    What's up?
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Writing
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Writing
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Archive
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Archive
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2025/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Categories
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Categories
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/ai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    AI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/full-stack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Full Stack
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Security
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/tech/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tech
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project-vision" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Project Vision
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 Project Vision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#core-problems-solved" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Problems Solved
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#live-demo" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎬 Live Demo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tech-stack-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ Tech Stack Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-first-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔐 Security-First Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔐 Security-First Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authentication-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authentication Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-layers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Security Layers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ai-powered-challenge-generation" class="md-nav__link">
+    <span class="md-ellipsis">
+      🤖 AI-Powered Challenge Generation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🤖 AI-Powered Challenge Generation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenge-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge Structure
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-prompt-engineering" class="md-nav__link">
+    <span class="md-ellipsis">
+      AI Prompt Engineering
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intelligent-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Intelligent Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#user-experience-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 User Experience Design
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 User Experience Design">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#challenge-generation-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Challenge Generation Flow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-ux-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key UX Features
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#technical-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Technical Implementation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Technical Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backend-api-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backend API Design
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-state-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frontend State Management
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Database Schema
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Performance Optimizations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Performance Optimizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frontend-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Frontend Optimizations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backend-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backend Optimizations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ai-integration-optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      AI Integration Optimizations
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#advanced-features" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔮 Advanced Features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔮 Advanced Features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quota-management-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      Quota Management System
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#webhook-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      Webhook Security
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 Real-World Impact
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 Real-World Impact">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#educational-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Educational Benefits
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#technical-benefits" class="md-nav__link">
+    <span class="md-ellipsis">
+      Technical Benefits
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#development-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Development Workflow
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Development Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#local-development-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Local Development Setup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-learnings" class="md-nav__link">
+    <span class="md-ellipsis">
+      💡 Key Learnings
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎉 Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏷️ Tags
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://avatars.githubusercontent.com/u/39896565?v=4&size=64" alt="Chandra Teja">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          Chandra Teja
+                        
+                      </strong>
+                      <br>
+                      AI Enthusiast
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2025-01-27 00:00:00+00:00" class="md-ellipsis">2025/01/27</time>
+                      </div>
+                    </li>
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 13h1.5v2.82l2.44 1.41-.75 1.3L15 16.69zm4-5H5v11h4.67c-.43-.91-.67-1.93-.67-3a7 7 0 0 1 7-7c1.07 0 2.09.24 3 .67zM5 21a2 2 0 0 1-2-2V5c0-1.11.89-2 2-2h1V1h2v2h8V1h2v2h1a2 2 0 0 1 2 2v6.1c1.24 1.26 2 2.99 2 4.9a7 7 0 0 1-7 7c-1.91 0-3.64-.76-4.9-2zm11-9.85A4.85 4.85 0 0 0 11.15 16c0 2.68 2.17 4.85 4.85 4.85A4.85 4.85 0 0 0 20.85 16c0-2.68-2.17-4.85-4.85-4.85"/></svg>
+                          <time datetime="2025-01-27 00:00:00+00:00" class="md-ellipsis">2025/01/27</time>
+                        </div>
+                      </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../category/tech/">Tech</a>, 
+                              <a href="../../../category/ai/">AI</a>, 
+                              <a href="../../../category/security/">Security</a>, 
+                              <a href="../../../category/full-stack/">Full Stack</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              5 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+  
+  
+
+
+<h1 id="building-a-secure-ai-powered-coding-challenge-platform">🔐🤖 Building a Secure AI-Powered Coding Challenge Platform</h1>
+<p>In the rapidly evolving world of software development, staying sharp with coding skills is essential. I built a secure, AI-powered platform that generates personalized coding challenges using modern web technologies. This project demonstrates how to combine artificial intelligence with robust security practices to create an educational tool that's both powerful and safe.</p>
+<p>🚀 FastAPI + ⚡ React + 🔐 Clerk + 🤖 OpenAI = The ultimate secure coding challenge generator with intelligent question generation and enterprise-grade authentication!</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0 5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.98 2.98 0 0 0 0-4.24 2.98 2.98 0 0 0-4.24 0l-3.53 3.53a2.98 2.98 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0 5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.98 2.98 0 0 0 0 4.24 2.98 2.98 0 0 0 4.24 0l3.53-3.53a2.98 2.98 0 0 0 0-4.24.973.973 0 0 1 0-1.42"/></svg></span> <a href="#">Live Demo</a> &nbsp;&nbsp;&nbsp; <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg></span> <a href="https://github.com/chandra447/ai-interview-prep">GitHub Repository</a> &nbsp;&nbsp;&nbsp; <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></svg></span> <a href="https://youtu.be/U72Hfy1Xfbc">Demo Video</a></p>
+<!-- more -->
+
+<h2 id="project-vision">🎯 Project Vision</h2>
+<p>The platform addresses a common challenge in developer education: generating diverse, high-quality coding questions at scale while maintaining user security and preventing abuse. By leveraging AI for content generation and implementing robust authentication, the system provides a personalized learning experience with enterprise-grade security.</p>
+<h3 id="core-problems-solved">Core Problems Solved</h3>
+<ul>
+<li><strong>Content Scalability</strong>: AI generates unlimited unique coding challenges</li>
+<li><strong>Security First</strong>: JWT-based authentication with webhook verification</li>
+<li><strong>Abuse Prevention</strong>: Daily quotas and rate limiting</li>
+<li><strong>User Experience</strong>: Seamless authentication flow with challenge history</li>
+<li><strong>Educational Value</strong>: Structured questions with detailed explanations</li>
+</ul>
+<h2 id="live-demo">🎬 Live Demo</h2>
+<p>See the platform in action! This demo showcases the complete user journey from authentication to challenge generation:</p>
+<div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%; margin: 2rem 0; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+<iframe 
+    src="https://www.youtube.com/embed/U72Hfy1Xfbc" 
+    title="AI-Powered Coding Challenge Platform Demo" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+    allowfullscreen
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+</iframe>
+</div>
+
+<p><strong>🎯 Demo Highlights:</strong>
+- <strong>Secure Authentication</strong>: Clerk integration with seamless login
+- <strong>AI Challenge Generation</strong>: Real-time question creation with OpenAI
+- <strong>Interactive UI</strong>: Modern React interface with smooth animations
+- <strong>Quota Management</strong>: Daily limits and usage tracking
+- <strong>Challenge History</strong>: Personal archive of completed challenges</p>
+<h2 id="tech-stack-architecture">⚡ Tech Stack Architecture</h2>
+<div x-data="{ 
+    hoveredTech: null,
+    techs: [
+        { 
+            id: 'react', 
+            name: 'React Frontend', 
+            description: 'Modern UI with TypeScript, Vite, and React Query',
+            color: '#58C4DC',
+            details: ['React 19.1.0 + TypeScript', 'Vite 6.3.5 with SWC', 'TanStack React Query', 'React Router 7.6.2']
+        },
+        { 
+            id: 'fastapi', 
+            name: 'FastAPI Backend', 
+            description: 'High-performance Python API with async support',
+            color: '#009688',
+            details: ['FastAPI + Python 3.13', 'UV package manager', 'SQLAlchemy 2.0.41 ORM', 'Uvicorn ASGI server']
+        },
+        { 
+            id: 'clerk', 
+            name: 'Clerk Auth', 
+            description: 'Enterprise-grade authentication and user management',
+            color: '#6C5CE7',
+            details: ['JWT token authentication', 'Webhook verification', 'User profile management', 'CORS protection']
+        },
+        { 
+            id: 'openai', 
+            name: 'OpenAI API', 
+            description: 'AI-powered challenge generation with GPT-4',
+            color: '#74AA9C',
+            details: ['GPT-4.1-mini integration', 'Structured JSON output', 'Multiple difficulty levels', 'Fallback system']
+        },
+        { 
+            id: 'ngrok', 
+            name: 'Ngrok Tunnels', 
+            description: 'Secure webhook development environment',
+            color: '#FF6B6B',
+            details: ['Secure webhook testing', 'Real-time event handling', 'Local development access', 'Dashboard monitoring']
+        }
+    ]
+}" x-init="
+    gsap.from('.tech-card', {duration: 0.6, y: 30, opacity: 0, stagger: 0.1, ease: 'power2.out'});
+" class="tech-showcase" style="margin: 3rem 0; padding: 2.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 20px; position: relative; overflow: hidden;">
+
+<!-- Background Animation -->
+<div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.03) 50%, transparent 70%); animation: shimmer 6s infinite; pointer-events: none;"></div>
+
+<div style="text-align: center; color: white; margin-bottom: 3rem; position: relative; z-index: 2;">
+<h3 style="margin: 0; font-size: 2rem; font-weight: 700;">🏗️ System Architecture</h3>
+<p style="opacity: 0.9; margin: 1rem 0; font-size: 1.1rem;">Hover over components to explore the tech stack</p>
+</div>
+
+<!-- Tech Stack Grid -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; position: relative; z-index: 2;">
+
+<template x-for="tech in techs" :key="tech.id">
+<div @mouseenter="hoveredTech = tech.id" 
+     @mouseleave="hoveredTech = null"
+     class="tech-card"
+     style="background: rgba(255,255,255,0.1); backdrop-filter: blur(15px); padding: 2rem; border-radius: 16px; border: 2px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.4s ease; text-align: center; position: relative; overflow: hidden;"
+     :style="hoveredTech === tech.id ? 'transform: translateY(-8px) scale(1.02); border-color: ' + tech.color + '; box-shadow: 0 20px 40px rgba(0,0,0,0.3);' : ''">
+
+<!-- Tech Icon -->
+<div style="width: 80px; height: 80px; margin: 0 auto 1.5rem; display: flex; align-items: center; justify-content: center; border-radius: 16px; transition: all 0.3s ease;"
+     :style="'background: ' + tech.color + '; transform: ' + (hoveredTech === tech.id ? 'scale(1.1) rotate(5deg)' : 'scale(1)')">
+
+<!-- React SVG -->
+<template x-if="tech.id === 'react'">
+<svg width="50" height="45" viewBox="0 0 569 512" xmlns="http://www.w3.org/2000/svg" fill="white">
+<path d="M285.5,201 C255.400481,201 231,225.400481 231,255.5 C231,285.599519 255.400481,310 285.5,310 C315.599519,310 340,285.599519 340,255.5 C340,225.400481 315.599519,201 285.5,201"/>
+<path d="M568.959856,255.99437 C568.959856,213.207656 529.337802,175.68144 466.251623,150.985214 C467.094645,145.423543 467.85738,139.922107 468.399323,134.521063 C474.621631,73.0415145 459.808523,28.6686204 426.709856,9.5541429 C389.677085,-11.8291748 337.36955,3.69129898 284.479928,46.0162134 C231.590306,3.69129898 179.282771,-11.8291748 142.25,9.5541429 C109.151333,28.6686204 94.3382249,73.0415145 100.560533,134.521063 C101.102476,139.922107 101.845139,145.443621 102.708233,151.02537 C97.4493791,153.033193 92.2908847,155.161486 87.3331099,157.39017 C31.0111824,182.708821 0,217.765415 0,255.99437 C0,298.781084 39.6220545,336.307301 102.708233,361.003527 C101.845139,366.565197 101.102476,372.066633 100.560533,377.467678 C94.3382249,438.947226 109.151333,483.32012 142.25,502.434597 C153.629683,508.887578 166.52439,512.186771 179.603923,511.991836 C210.956328,511.991836 247.567589,495.487529 284.479928,465.972527 C321.372196,495.487529 358.003528,511.991836 389.396077,511.991836 C402.475265,512.183856 415.36922,508.884856 426.75,502.434597 C459.848667,483.32012 474.661775,438.947226 468.439467,377.467678 C467.897524,372.066633 467.134789,366.565197 466.291767,361.003527 C529.377946,336.347457 569,298.761006 569,255.99437"/>
+</svg>
+</template>
+
+<!-- FastAPI SVG -->
+<template x-if="tech.id === 'fastapi'">
+<svg width="50" height="50" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" fill="white">
+<path d="M128 0C57.33 0 0 57.33 0 128s57.33 128 128 128 128-57.33 128-128S198.67 0 128 0Zm-6.67 230.605v-80.288H76.699l64.128-124.922v80.288h42.966L121.33 230.605Z"/>
+</svg>
+</template>
+
+<!-- Clerk SVG -->
+<template x-if="tech.id === 'clerk'">
+<svg width="50" height="50" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="white">
+<path d="m21.47 20.829 -2.881 -2.881a0.572 0.572 0 0 0 -0.7 -0.084 6.854 6.854 0 0 1 -7.081 0 0.576 0.576 0 0 0 -0.7 0.084l-2.881 2.881a0.576 0.576 0 0 0 -0.103 0.69 0.57 0.57 0 0 0 0.166 0.186 12 12 0 0 0 14.113 0 0.58 0.58 0 0 0 0.239 -0.423 0.576 0.576 0 0 0 -0.172 -0.453Zm0.002 -17.668 -2.88 2.88a0.569 0.569 0 0 1 -0.701 0.084A6.857 6.857 0 0 0 8.724 8.08a6.862 6.862 0 0 0 -1.222 3.692 6.86 6.86 0 0 0 0.978 3.764 0.573 0.573 0 0 1 -0.083 0.699l-2.881 2.88a0.567 0.567 0 0 1 -0.864 -0.063A11.993 11.993 0 0 1 6.771 2.7a11.99 11.99 0 0 1 14.637 -0.405 0.566 0.566 0 0 1 0.232 0.418 0.57 0.57 0 0 1 -0.168 0.448Zm-7.118 12.261a3.427 3.427 0 1 0 0 -6.854 3.427 3.427 0 0 0 0 6.854Z"/>
+</svg>
+</template>
+
+<!-- OpenAI SVG -->
+<template x-if="tech.id === 'openai'">
+<svg width="50" height="50" viewBox="0 0 256 260" xmlns="http://www.w3.org/2000/svg" fill="white">
+<path d="M239.184 106.203a64.716 64.716 0 0 0-5.576-53.103C219.452 28.459 191 15.784 163.213 21.74A65.586 65.586 0 0 0 52.096 45.22a64.716 64.716 0 0 0-43.23 31.36c-14.31 24.602-11.061 55.634 8.033 76.74a64.665 64.665 0 0 0 5.525 53.102c14.174 24.65 42.644 37.324 70.446 31.36a64.72 64.72 0 0 0 48.754 21.744c28.481.025 53.714-18.361 62.414-45.481a64.767 64.767 0 0 0 43.229-31.36c14.137-24.558 10.875-55.423-8.083-76.483Zm-97.56 136.338a48.397 48.397 0 0 1-31.105-11.255l1.535-.87 51.67-29.825a8.595 8.595 0 0 0 4.247-7.367v-72.85l21.845 12.636c.218.111.37.32.409.563v60.367c-.056 26.818-21.783 48.545-48.601 48.601Zm-104.466-44.61a48.345 48.345 0 0 1-5.781-32.589l1.534.921 51.722 29.826a8.339 8.339 0 0 0 8.441 0l63.181-36.425v25.221a.87.87 0 0 1-.358.665l-52.335 30.184c-23.257 13.398-52.97 5.431-66.404-17.803ZM23.549 85.38a48.499 48.499 0 0 1 25.58-21.333v61.39a8.288 8.288 0 0 0 4.195 7.316l62.874 36.272-21.845 12.636a.819.819 0 0 1-.767 0L41.353 151.53c-23.211-13.454-31.171-43.144-17.804-66.405v.256Zm179.466 41.695-63.08-36.63L161.73 77.86a.819.819 0 0 1 .768 0l52.233 30.184a48.6 48.6 0 0 1-7.316 87.635v-61.391a8.544 8.544 0 0 0-4.4-7.213Zm21.742-32.69-1.535-.922-51.619-30.081a8.39 8.39 0 0 0-8.492 0L99.98 99.808V74.587a.716.716 0 0 1 .307-.665l52.233-30.133a48.652 48.652 0 0 1 72.236 50.391v.205ZM88.061 139.097l-21.845-12.585a.87.87 0 0 1-.41-.614V65.685a48.652 48.652 0 0 1 79.757-37.346l-1.535.87-51.67 29.825a8.595 8.595 0 0 0-4.246 7.367l-.051 72.697Zm11.868-25.58 28.138-16.217 28.188 16.218v32.434l-28.086 16.218-28.188-16.218-.052-32.434Z"/>
+</svg>
+</template>
+
+<!-- Ngrok SVG -->
+<template x-if="tech.id === 'ngrok'">
+<svg width="50" height="25" viewBox="0 0 200 92.11" xmlns="http://www.w3.org/2000/svg" fill="white">
+<path d="M69.68 34.89c-2.66-2.92-5.95-4.39-9.86-4.39-2.41 0-4.63.46-6.67 1.39-2.04.93-3.8 2.19-5.29 3.8-1.48 1.62-2.65 3.5-3.51 5.68-.86 2.17-1.29 4.52-1.29 7.06 0 2.49.4 4.76 1.19 6.81.8 2.04 1.91 3.79 3.35 5.25 1.44 1.46 3.15 2.6 5.13 3.42 1.98.82 4.15 1.23 6.51 1.23 1.07 0 2.06-.08 2.96-.23.9-.15 1.76-.4 2.58-.74.82-.35 1.62-.79 2.42-1.32.79-.54 1.62-1.22 2.48-2.03v8.67h-.01v.84H58.75l-8.21 9.24v1.59h30.81V31.41H69.68v3.48zm-.03 15.89c-.41.92-.95 1.73-1.61 2.42-.67.69-1.46 1.22-2.38 1.61-.92.39-1.9.58-2.93.58-1.08 0-2.08-.19-3-.58-.92-.39-1.72-.92-2.39-1.61-.67-.69-1.19-1.5-1.58-2.42-.39-.92-.58-1.93-.58-3 0-1.03.2-2 .61-2.9.41-.9.95-1.68 1.65-2.35.69-.67 1.48-1.2 2.38-1.61.9-.41 1.87-.61 2.9-.61.99 0 1.94.19 2.87.58.92.38 1.73.92 2.42 1.61.69.69 1.23 1.48 1.65 2.38.41.9.61 1.89.61 2.97-.01 1.03-.21 2.01-.62 2.93zM37.12 35.43c-.62-.73-1.32-1.36-2.07-1.92-.67-.49-1.38-.92-2.15-1.27-.37-.17-.76-.31-1.17-.44-.59-.19-1.23-.32-1.89-.43h-8.32l-5.5 6.27V31.5H4.35v33.08h11.67V42.26h10.96l.91-.02v22.33h11.67V43.88c0-1.76-.17-3.33-.51-4.71-.34-1.37-.98-2.61-1.93-3.74zm78.55-4.02h-12.73l-5.06 5.7v-5.7H86.2v33.08h11.7l.01-22.14h8.49l9.27-10.48v-.46zm63.06 15.28 15.96-14.72v-.56h-15.38l-12.24 11.93V10.97H155.4v53.51h11.67V51.01l12.83 13.47h15.75v-.63zm-32.45-11.51c-1.78-1.57-3.89-2.79-6.32-3.67-2.43-.88-5.06-1.32-7.9-1.32-2.88 0-5.54.45-7.96 1.35-2.43.9-4.52 2.14-6.29 3.7-1.76 1.57-3.14 3.42-4.13 5.55-.99 2.13-1.48 4.42-1.48 6.87 0 2.71.49 5.17 1.48 7.38s2.35 4.11 4.1 5.7c1.74 1.59 3.81 2.82 6.22 3.68 2.41.86 5.03 1.29 7.87 1.29 2.88 0 5.55-.43 8.03-1.29 2.47-.86 4.59-2.07 6.35-3.65 1.76-1.57 3.15-3.44 4.16-5.61 1.01-2.17 1.52-4.56 1.52-7.19 0-2.62-.5-5.02-1.48-7.19-1-2.16-2.39-4.03-4.17-5.6zm-7.29 15.66c-.41.92-.95 1.73-1.61 2.42-.67.69-1.46 1.22-2.38 1.61-.93.39-1.9.58-2.93.58-1.03 0-2.01-.19-2.94-.58-.92-.39-1.72-.92-2.38-1.61-.67-.69-1.2-1.5-1.61-2.42-.41-.92-.61-1.94-.61-3.06 0-1.03.2-2 .61-2.9.41-.9.94-1.69 1.61-2.38.67-.69 1.46-1.23 2.38-1.61.93-.39 1.9-.58 2.94-.58 1.03 0 2.01.19 2.93.58.92.38 1.72.92 2.38 1.61.67.69 1.2 1.5 1.61 2.42.41.92.61 1.9.61 2.93 0 1.07-.2 2.07-.61 2.99z"/>
+</svg>
+</template>
+
+</div>
+
+<!-- Tech Name and Description -->
+<h4 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.2rem; font-weight: 600;" x-text="tech.name"></h4>
+<p style="color: rgba(255,255,255,0.8); margin: 0 0 1rem 0; font-size: 0.9rem; line-height: 1.4;" x-text="tech.description"></p>
+
+<!-- Details List (shown on hover) -->
+<div x-show="hoveredTech === tech.id" 
+     x-transition:enter="transition ease-out duration-300" 
+     x-transition:enter-start="opacity-0 transform translate-y-2" 
+     x-transition:enter-end="opacity-100 transform translate-y-0"
+     style="text-align: left;">
+<template x-for="detail in tech.details" :key="detail">
+<div style="color: rgba(255,255,255,0.9); font-size: 0.85rem; margin: 0.3rem 0; padding-left: 1rem; position: relative;">
+<span style="position: absolute; left: 0; color: rgba(255,255,255,0.6);">•</span>
+<span x-text="detail"></span>
+</div>
+</template>
+</div>
+
+</div>
+</template>
+
+</div>
+
+</div>
+
+<style>
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.tech-card:hover {
+    background: rgba(255,255,255,0.15) !important;
+}
+
+@media (max-width: 768px) {
+    .tech-showcase {
+        padding: 1.5rem !important;
+    }
+
+    .tech-showcase h3 {
+        font-size: 1.5rem !important;
+    }
+}
+</style>
+
+<h2 id="security-first-architecture">🔐 Security-First Architecture</h2>
+<p>Security isn't an afterthought—it's built into every layer of the application.</p>
+<h3 id="authentication-flow">Authentication Flow</h3>
+<pre class="mermaid"><code>sequenceDiagram
+    participant U as User
+    participant F as Frontend
+    participant C as Clerk
+    participant B as Backend
+    participant AI as OpenAI
+
+    U-&gt;&gt;F: Access Application
+    F-&gt;&gt;C: Authenticate User
+    C-&gt;&gt;F: Return JWT Token
+    F-&gt;&gt;B: API Request + JWT
+    B-&gt;&gt;C: Verify Token
+    C-&gt;&gt;B: Token Valid
+    B-&gt;&gt;AI: Generate Challenge
+    AI-&gt;&gt;B: Return Challenge
+    B-&gt;&gt;F: Secure Response
+    F-&gt;&gt;U: Display Challenge</code></pre>
+<h3 id="security-layers">Security Layers</h3>
+<ol>
+<li><strong>JWT Authentication</strong>: Clerk-managed tokens with automatic refresh</li>
+<li><strong>Webhook Verification</strong>: Svix-powered signature validation</li>
+<li><strong>Rate Limiting</strong>: Daily quotas prevent API abuse</li>
+<li><strong>CORS Protection</strong>: Configured for secure cross-origin requests</li>
+<li><strong>Environment Security</strong>: Secure credential management</li>
+</ol>
+<h2 id="ai-powered-challenge-generation">🤖 AI-Powered Challenge Generation</h2>
+<p>The heart of the platform lies in its intelligent challenge generation system.</p>
+<h3 id="challenge-structure">Challenge Structure</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">interface</span><span class="w"> </span><span class="nx">CodingChallenge</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">question</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">options</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">[];</span>
+<span class="w">  </span><span class="nx">correct_answer</span><span class="o">:</span><span class="w"> </span><span class="kt">number</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">explanation</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">difficulty</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;easy&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;medium&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="s1">&#39;hard&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="nx">topic</span><span class="o">:</span><span class="w"> </span><span class="kt">string</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="ai-prompt-engineering">AI Prompt Engineering</h3>
+<p>The system uses carefully crafted prompts to ensure consistent, high-quality output:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">generate_challenge_prompt</span><span class="p">(</span><span class="n">difficulty</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">topic</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    Generate a </span><span class="si">{</span><span class="n">difficulty</span><span class="si">}</span><span class="s2"> coding challenge about </span><span class="si">{</span><span class="n">topic</span><span class="si">}</span><span class="s2">.</span>
+
+<span class="s2">    Requirements:</span>
+<span class="s2">    - Multiple choice with 4 options</span>
+<span class="s2">    - One correct answer</span>
+<span class="s2">    - Detailed explanation</span>
+<span class="s2">    - Practical, interview-style question</span>
+
+<span class="s2">    Return valid JSON matching the schema.</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+</code></pre></div>
+<h3 id="intelligent-features">Intelligent Features</h3>
+<ul>
+<li><strong>Difficulty Scaling</strong>: AI adjusts complexity based on user selection</li>
+<li><strong>Topic Diversity</strong>: Covers algorithms, data structures, system design</li>
+<li><strong>Explanation Quality</strong>: Detailed reasoning for learning reinforcement</li>
+<li><strong>Validation</strong>: Pydantic models ensure data integrity</li>
+</ul>
+<h2 id="user-experience-design">🎯 User Experience Design</h2>
+<h3 id="challenge-generation-flow">Challenge Generation Flow</h3>
+<div x-data="{ 
+    currentStep: 1,
+    steps: [
+        { id: 1, title: 'Select Difficulty', icon: '🎯', desc: 'Choose your challenge level' },
+        { id: 2, title: 'AI Generation', icon: '🤖', desc: 'OpenAI creates your question' },
+        { id: 3, title: 'Answer Challenge', icon: '💭', desc: 'Test your knowledge' },
+        { id: 4, title: 'View Results', icon: '📊', desc: 'Learn from explanations' }
+    ]
+}" x-init="
+    setInterval(() => {
+        currentStep = currentStep >= 4 ? 1 : currentStep + 1;
+    }, 2500);
+" class="flow-container" style="margin: 3rem 0; padding: 2.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 16px;">
+
+<!-- Header -->
+<div style="text-align: center; color: white; margin-bottom: 3rem;">
+<h3 style="margin: 0 0 0.5rem 0; font-size: 1.8rem; font-weight: 600;">🔄 Challenge Generation Flow</h3>
+<p style="opacity: 0.9; font-size: 1rem; margin: 0;">Watch the process in action</p>
+</div>
+
+<!-- Flow Steps -->
+<div style="position: relative; max-width: 700px; margin: 0 auto; height: 400px;">
+
+<!-- SVG for Curved Connecting Lines -->
+<svg style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;" viewBox="0 0 700 400">
+<!-- Step 1 to Step 2 (straight horizontal) -->
+<path d="M 175 100 L 350 100" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+
+<!-- Step 2 to Step 3 (curved down and right) -->
+<path d="M 525 100 Q 600 100 600 200 Q 600 300 525 300" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+
+<!-- Step 3 to Step 4 (straight horizontal) -->
+<path d="M 350 300 L 175 300" stroke="rgba(255,255,255,0.3)" stroke-width="2" fill="none"/>
+
+<!-- Animated Dots -->
+<!-- Dot 1: Step 1 to 2 -->
+<circle r="5" fill="#4ECDC4" x-show="currentStep === 1" style="filter: drop-shadow(0 0 8px #4ECDC4);">
+<animateMotion dur="2.5s" repeatCount="indefinite" path="M 175 100 L 350 100"/>
+</circle>
+
+<!-- Dot 2: Step 2 to 3 -->
+<circle r="5" fill="#4ECDC4" x-show="currentStep === 2" style="filter: drop-shadow(0 0 8px #4ECDC4);">
+<animateMotion dur="2.5s" repeatCount="indefinite" path="M 525 100 Q 600 100 600 200 Q 600 300 525 300"/>
+</circle>
+
+<!-- Dot 3: Step 3 to 4 -->
+<circle r="5" fill="#4ECDC4" x-show="currentStep === 3" style="filter: drop-shadow(0 0 8px #4ECDC4);">
+<animateMotion dur="2.5s" repeatCount="indefinite" path="M 350 300 L 175 300"/>
+</circle>
+</svg>
+
+<!-- Step 1: Select Difficulty -->
+<div style="position: absolute; top: 50px; left: 50px; z-index: 2;">
+<div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 16px; border: 2px solid rgba(255,255,255,0.2); text-align: center; width: 200px; transition: all 0.4s ease; transform-origin: center;"
+     :style="currentStep === 1 ? 'border-color: #4ECDC4; background: rgba(255,255,255,0.15); transform: translateY(-8px) scale(1.05); box-shadow: 0 15px 35px rgba(0,0,0,0.2);' : ''">
+
+<div style="width: 60px; height: 60px; margin: 0 auto 1rem; border-radius: 12px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; transition: all 0.4s ease;"
+     :style="currentStep === 1 ? 'background: #4ECDC4; transform: scale(1.15) rotate(5deg);' : ''">
+<span>🎯</span>
+</div>
+
+<h4 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600;">Select Difficulty</h4>
+<p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 0.9rem; line-height: 1.4;">Choose your challenge level</p>
+</div>
+</div>
+
+<!-- Step 2: AI Generation -->
+<div style="position: absolute; top: 50px; right: 50px; z-index: 2;">
+<div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 16px; border: 2px solid rgba(255,255,255,0.2); text-align: center; width: 200px; transition: all 0.4s ease; transform-origin: center;"
+     :style="currentStep === 2 ? 'border-color: #4ECDC4; background: rgba(255,255,255,0.15); transform: translateY(-8px) scale(1.05); box-shadow: 0 15px 35px rgba(0,0,0,0.2);' : ''">
+
+<div style="width: 60px; height: 60px; margin: 0 auto 1rem; border-radius: 12px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; transition: all 0.4s ease;"
+     :style="currentStep === 2 ? 'background: #4ECDC4; transform: scale(1.15) rotate(-5deg);' : ''">
+<span>🤖</span>
+</div>
+
+<h4 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600;">AI Generation</h4>
+<p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 0.9rem; line-height: 1.4;">OpenAI creates your question</p>
+</div>
+</div>
+
+<!-- Step 3: Answer Challenge -->
+<div style="position: absolute; bottom: 50px; right: 50px; z-index: 2;">
+<div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 16px; border: 2px solid rgba(255,255,255,0.2); text-align: center; width: 200px; transition: all 0.4s ease; transform-origin: center;"
+     :style="currentStep === 3 ? 'border-color: #4ECDC4; background: rgba(255,255,255,0.15); transform: translateY(-8px) scale(1.05); box-shadow: 0 15px 35px rgba(0,0,0,0.2);' : ''">
+
+<div style="width: 60px; height: 60px; margin: 0 auto 1rem; border-radius: 12px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; transition: all 0.4s ease;"
+     :style="currentStep === 3 ? 'background: #4ECDC4; transform: scale(1.15) rotate(5deg);' : ''">
+<span>💭</span>
+</div>
+
+<h4 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600;">Answer Challenge</h4>
+<p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 0.9rem; line-height: 1.4;">Test your knowledge</p>
+</div>
+</div>
+
+<!-- Step 4: View Results -->
+<div style="position: absolute; bottom: 50px; left: 50px; z-index: 2;">
+<div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 16px; border: 2px solid rgba(255,255,255,0.2); text-align: center; width: 200px; transition: all 0.4s ease; transform-origin: center;"
+     :style="currentStep === 4 ? 'border-color: #4ECDC4; background: rgba(255,255,255,0.15); transform: translateY(-8px) scale(1.05); box-shadow: 0 15px 35px rgba(0,0,0,0.2);' : ''">
+
+<div style="width: 60px; height: 60px; margin: 0 auto 1rem; border-radius: 12px; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 1.8rem; transition: all 0.4s ease;"
+     :style="currentStep === 4 ? 'background: #4ECDC4; transform: scale(1.15) rotate(-5deg);' : ''">
+<span>📊</span>
+</div>
+
+<h4 style="color: white; margin: 0 0 0.5rem 0; font-size: 1.1rem; font-weight: 600;">View Results</h4>
+<p style="color: rgba(255,255,255,0.8); margin: 0; font-size: 0.9rem; line-height: 1.4;">Learn from explanations</p>
+</div>
+</div>
+
+</div>
+
+<!-- Current Step Text -->
+<div style="text-align: center; margin-top: 2rem;">
+<p style="color: rgba(255,255,255,0.9); font-size: 1rem; margin: 0;">
+<span style="font-weight: 600;">Current Step:</span>
+<span x-text="steps[currentStep - 1].title"></span>
+</p>
+</div>
+
+</div>
+
+<style>
+.flow-container {
+    position: relative;
+}
+
+/* Card hover effects */
+.flow-container > div > div:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    background: rgba(255,255,255,0.15) !important;
+}
+
+@media (max-width: 768px) {
+    .flow-container > div:first-child {
+        height: 600px !important;
+    }
+
+    /* Reposition cards for mobile */
+    .flow-container > div:nth-child(2) {
+        top: 20px !important;
+        left: 20px !important;
+    }
+
+    .flow-container > div:nth-child(3) {
+        top: 170px !important;
+        right: 20px !important;
+    }
+
+    .flow-container > div:nth-child(4) {
+        top: 320px !important;
+        right: 20px !important;
+    }
+
+    .flow-container > div:nth-child(5) {
+        top: 470px !important;
+        left: 20px !important;
+    }
+
+    /* Hide SVG lines on mobile */
+    .flow-container svg {
+        display: none !important;
+    }
+
+    /* Make cards smaller on mobile */
+    .flow-container > div > div {
+        width: 160px !important;
+        padding: 1rem !important;
+    }
+
+    .flow-container h4 {
+        font-size: 1rem !important;
+    }
+
+    .flow-container p {
+        font-size: 0.8rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .flow-container > div > div {
+        width: 140px !important;
+        padding: 0.8rem !important;
+    }
+
+    .flow-container h4 {
+        font-size: 0.9rem !important;
+    }
+
+    .flow-container p {
+        font-size: 0.75rem !important;
+    }
+}
+</style>
+
+<h3 id="key-ux-features">Key UX Features</h3>
+<ul>
+<li><strong>Instant Feedback</strong>: Real-time challenge generation</li>
+<li><strong>Progress Tracking</strong>: Visual quota indicators</li>
+<li><strong>History Management</strong>: Personal challenge archive</li>
+<li><strong>Responsive Design</strong>: Seamless mobile experience</li>
+<li><strong>Error Handling</strong>: Graceful degradation with fallbacks</li>
+</ul>
+<h2 id="technical-implementation">📊 Technical Implementation</h2>
+<h3 id="backend-api-design">Backend API Design</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/api/generate-challenge&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">generate_challenge</span><span class="p">(</span>
+    <span class="n">request</span><span class="p">:</span> <span class="n">ChallengeRequest</span><span class="p">,</span>
+    <span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">)</span>
+<span class="p">):</span>
+    <span class="c1"># Check daily quota</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="k">await</span> <span class="n">check_user_quota</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">429</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Daily quota exceeded&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Generate AI challenge</span>
+    <span class="n">challenge</span> <span class="o">=</span> <span class="k">await</span> <span class="n">ai_generator</span><span class="o">.</span><span class="n">create_challenge</span><span class="p">(</span>
+        <span class="n">difficulty</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">difficulty</span><span class="p">,</span>
+        <span class="n">topic</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">topic</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Save to database</span>
+    <span class="k">await</span> <span class="n">save_challenge</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">challenge</span><span class="p">)</span>
+
+    <span class="c1"># Update quota</span>
+    <span class="k">await</span> <span class="n">update_user_quota</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">challenge</span>
+</code></pre></div>
+<h3 id="frontend-state-management">Frontend State Management</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">useChallenge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">useQuery</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">queryKey</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;challenge&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">difficulty</span><span class="p">],</span>
+<span class="w">    </span><span class="nx">queryFn</span><span class="o">:</span><span class="w"> </span><span class="kt">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/api/generate-challenge&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">method</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nx">headers</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="s1">&#39;Authorization&#39;</span><span class="o">:</span><span class="w"> </span><span class="sb">`Bearer </span><span class="si">${</span><span class="k">await</span><span class="w"> </span><span class="nx">getToken</span><span class="p">()</span><span class="si">}</span><span class="sb">`</span><span class="p">,</span>
+<span class="w">          </span><span class="s1">&#39;Content-Type&#39;</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;application/json&#39;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nx">body</span><span class="o">:</span><span class="w"> </span><span class="kt">JSON.stringify</span><span class="p">({</span><span class="w"> </span><span class="nx">difficulty</span><span class="p">,</span><span class="w"> </span><span class="nx">topic</span><span class="w"> </span><span class="p">})</span>
+<span class="w">      </span><span class="p">});</span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">();</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nx">staleTime</span><span class="o">:</span><span class="w"> </span><span class="kt">0</span><span class="w"> </span><span class="c1">// Always fresh challenges</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">};</span>
+</code></pre></div>
+<h3 id="database-schema">Database Schema</h3>
+<div class="highlight"><pre><span></span><code><span class="c1">-- Users managed by Clerk</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">challenges</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTOINCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">user_id</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">question</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">options</span><span class="w"> </span><span class="n">JSON</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">correct_answer</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">explanation</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">difficulty</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">topic</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="k">TIMESTAMP</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_TIMESTAMP</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">user_quotas</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">user_id</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">daily_count</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="n">last_reset</span><span class="w"> </span><span class="nb">DATE</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_DATE</span>
+<span class="p">);</span>
+</code></pre></div>
+<h2 id="performance-optimizations">🚀 Performance Optimizations</h2>
+<h3 id="frontend-optimizations">Frontend Optimizations</h3>
+<ul>
+<li><strong>Code Splitting</strong>: Route-based lazy loading</li>
+<li><strong>React Query</strong>: Intelligent caching and background updates</li>
+<li><strong>Vite + SWC</strong>: Lightning-fast development builds</li>
+<li><strong>Bundle Analysis</strong>: Optimized chunk sizes</li>
+</ul>
+<h3 id="backend-optimizations">Backend Optimizations</h3>
+<ul>
+<li><strong>UV Package Manager</strong>: 10-100x faster than pip</li>
+<li><strong>SQLAlchemy 2.0</strong>: Async database operations</li>
+<li><strong>Connection Pooling</strong>: Efficient database connections</li>
+<li><strong>Response Caching</strong>: Reduced API latency</li>
+</ul>
+<h3 id="ai-integration-optimizations">AI Integration Optimizations</h3>
+<ul>
+<li><strong>Prompt Caching</strong>: Reuse optimized prompts</li>
+<li><strong>Fallback Strategies</strong>: Graceful degradation</li>
+<li><strong>Rate Limiting</strong>: Prevent API quota exhaustion</li>
+<li><strong>Response Validation</strong>: Ensure data quality</li>
+</ul>
+<h2 id="advanced-features">🔮 Advanced Features</h2>
+<h3 id="quota-management-system">Quota Management System</h3>
+<div class="highlight"><pre><span></span><code><span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">reset_daily_quotas</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reset quotas for all users daily&quot;&quot;&quot;</span>
+    <span class="k">await</span> <span class="n">database</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        UPDATE user_quotas </span>
+<span class="s2">        SET daily_count = 0, last_reset = CURRENT_DATE</span>
+<span class="s2">        WHERE last_reset &lt; CURRENT_DATE</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="webhook-security">Webhook Security</h3>
+<div class="highlight"><pre><span></span><code><span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/webhooks/clerk&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">handle_clerk_webhook</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">):</span>
+    <span class="c1"># Verify webhook signature</span>
+    <span class="n">payload</span> <span class="o">=</span> <span class="k">await</span> <span class="n">request</span><span class="o">.</span><span class="n">body</span><span class="p">()</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">headers</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">event</span> <span class="o">=</span> <span class="n">svix</span><span class="o">.</span><span class="n">Webhook</span><span class="p">(</span><span class="n">clerk_webhook_secret</span><span class="p">)</span><span class="o">.</span><span class="n">verify</span><span class="p">(</span>
+            <span class="n">payload</span><span class="p">,</span> <span class="n">headers</span>
+        <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="n">status_code</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">detail</span><span class="o">=</span><span class="s2">&quot;Invalid signature&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Process user events</span>
+    <span class="k">if</span> <span class="n">event</span><span class="p">[</span><span class="s2">&quot;type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;user.created&quot;</span><span class="p">:</span>
+        <span class="k">await</span> <span class="n">create_user_quota</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">][</span><span class="s2">&quot;id&quot;</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;success&quot;</span><span class="p">}</span>
+</code></pre></div>
+<h2 id="real-world-impact">📈 Real-World Impact</h2>
+<h3 id="educational-benefits">Educational Benefits</h3>
+<ul>
+<li><strong>Skill Assessment</strong>: Evaluate programming knowledge</li>
+<li><strong>Interview Preparation</strong>: Practice with realistic questions</li>
+<li><strong>Continuous Learning</strong>: Daily challenge routine</li>
+<li><strong>Progress Tracking</strong>: Monitor improvement over time</li>
+</ul>
+<h3 id="technical-benefits">Technical Benefits</h3>
+<ul>
+<li><strong>Scalable Architecture</strong>: Handle thousands of users</li>
+<li><strong>Security Best Practices</strong>: Enterprise-grade protection</li>
+<li><strong>Modern Stack</strong>: Latest web technologies</li>
+<li><strong>Developer Experience</strong>: Fast development workflow</li>
+</ul>
+<h2 id="development-workflow">🔧 Development Workflow</h2>
+<h3 id="local-development-setup">Local Development Setup</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Backend setup</span>
+<span class="nb">cd</span><span class="w"> </span>backend
+uv<span class="w"> </span>sync
+uv<span class="w"> </span>run<span class="w"> </span>server.py
+
+<span class="c1"># Frontend setup</span>
+<span class="nb">cd</span><span class="w"> </span>frontend
+npm<span class="w"> </span>install
+npm<span class="w"> </span>run<span class="w"> </span>dev
+
+<span class="c1"># Ngrok for webhooks</span>
+ngrok<span class="w"> </span>http<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--domain<span class="o">=</span>your-domain.ngrok-free.app
+</code></pre></div>
+<h3 id="environment-configuration">Environment Configuration</h3>
+<div class="highlight"><pre><span></span><code># Required Environment Variables
+OPENAI_API_KEY=your_openai_key
+CLERK_SECRET_KEY=your_clerk_secret
+NGROK_AUTHTOKEN=your_ngrok_token
+NGROK_DOMAIN=your-domain.ngrok-free.app
+DATABASE_URL=sqlite:///./challenges.db
+</code></pre></div>
+<h2 id="key-learnings">💡 Key Learnings</h2>
+<p>Building this platform taught me valuable lessons about modern web development:</p>
+<ol>
+<li><strong>Security First</strong>: Authentication should be built-in, not bolted-on</li>
+<li><strong>AI Integration</strong>: Structured outputs are more reliable than free-form text</li>
+<li><strong>User Experience</strong>: Real-time feedback improves engagement</li>
+<li><strong>Performance</strong>: Modern tools like UV and Vite dramatically improve DX</li>
+<li><strong>Architecture</strong>: Clean separation of concerns enables scalability</li>
+</ol>
+<h2 id="conclusion">🎉 Conclusion</h2>
+<p>This secure AI-powered coding challenge platform demonstrates how to build modern, scalable applications that prioritize both user experience and security. By combining cutting-edge AI capabilities with robust authentication and thoughtful architecture, we can create educational tools that are both powerful and safe.</p>
+<p>The project showcases the potential of AI in education while maintaining the security standards required for production applications. As AI continues to evolve, platforms like this will play a crucial role in developer education and skill assessment.</p>
+<hr />
+<p><em>Ready to test your coding skills? Try the platform and see how AI can personalize your learning journey while keeping your data secure!</em></p>
+<h2 id="tags">🏷️ Tags</h2>
+<p><code>#AI</code> <code>#Security</code> <code>#FastAPI</code> <code>#React</code> <code>#Authentication</code> <code>#OpenAI</code> <code>#Webhooks</code> <code>#Education</code> <code>#FullStack</code> <code>#ModernWeb</code> </p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.indexes", "navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "header.autohide", "toc.follow", "navigation.top", "search.share"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+      
+        <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+      
+        <script src="../../../../js/animations.js"></script>
+      
+    
+  </body>
+</html>

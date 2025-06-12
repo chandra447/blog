@@ -2,30 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://chandra447.github.io/blog/</loc>
-         <lastmod>2025-06-04</lastmod>
+         <lastmod>2025-06-12</lastmod>
     </url>
     <url>
          <loc>https://chandra447.github.io/blog/writing/</loc>
-         <lastmod>2025-06-04</lastmod>
+         <lastmod>2025-06-12</lastmod>
     </url>
     <url>
          <loc>https://chandra447.github.io/blog/writing/tech/ai/-building-an-ai-powered-expense-tracker-with-modern-web-technologies/</loc>
-         <lastmod>2025-06-04</lastmod>
+         <lastmod>2025-06-12</lastmod>
+    </url>
+    <url>
+         <loc>https://chandra447.github.io/blog/writing/tech/ai/-building-a-secure-ai-powered-coding-challenge-platform/</loc>
+         <lastmod>2025-06-12</lastmod>
     </url>
     <url>
          <loc>https://chandra447.github.io/blog/writing/archive/2025/</loc>
-         <lastmod>2025-06-04</lastmod>
+         <lastmod>2025-06-12</lastmod>
     </url>
     <url>
          <loc>https://chandra447.github.io/blog/writing/category/tech/</loc>
-         <lastmod>2025-06-04</lastmod>
+         <lastmod>2025-06-12</lastmod>
     </url>
     <url>
          <loc>https://chandra447.github.io/blog/writing/category/ai/</loc>
-         <lastmod>2025-06-04</lastmod>
+         <lastmod>2025-06-12</lastmod>
     </url>
     <url>
          <loc>https://chandra447.github.io/blog/writing/category/full-stack/</loc>
-         <lastmod>2025-06-04</lastmod>
+         <lastmod>2025-06-12</lastmod>
+    </url>
+    <url>
+         <loc>https://chandra447.github.io/blog/writing/category/security/</loc>
+         <lastmod>2025-06-12</lastmod>
     </url>
 </urlset>
