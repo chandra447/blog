@@ -7,9 +7,9 @@ repo_name: chandra447/blog
 nav:
   - Home:
     - Home: 'index.md'
-    - Writing: 'writing/index.md'
-  - Writing:
-    - writing: "writing/index.md"
+    - Projects: 'projects/index.md'
+  - Projects:
+    - projects: "projects/index.md"
 theme:
   name: material
   favicon: images/materialdesign.png
@@ -84,7 +84,7 @@ plugins:
   - search
   - tags
   - blog:
-      blog_dir: writing
+      blog_dir: projects
       blog_toc: true
       categories_name: Categories
       post_date_format: yyyy/MM/dd
